@@ -3,12 +3,19 @@ import pandas as pd
 import os
 
 def clean_data(df):
-    # round the values for GDP to get rid of decimal points
+    """ 
+    Function for rounding the values for GDP to get rid of decimal points.
+
+    """
     df['GDP'] = df['GDP'].round()
 
     return df
 
 def load_data(countries, folder_name):
+    """
+    Function for loading the data from a number of csv files, returning a pandas dataframe.
+    
+    """
 
     dfs = []
 
@@ -30,6 +37,10 @@ def load_data(countries, folder_name):
     return combined_df
 
 def plot_data(df, countries):
+    """
+    Function for creating a line plot that compares the GDP of the different countries over time.
+    
+    """
     filtered_df = df[df["Country"].isin(countries)]
     fig = px.line(
         filtered_df,

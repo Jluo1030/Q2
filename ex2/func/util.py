@@ -1,35 +1,55 @@
 import plotly.express as px
 import pandas as pd
 import os
+from typing import List
 
-def clean_data(df):
-    # round the values for GDP to get rid of decimal points
+
+def clean_data(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Function for rounding the values for GDP
+    to get rid of decimal points.
+
+    """
     df['GDP'] = df['GDP'].round()
 
     return df
 
-def load_data(countries, folder_name):
+
+def load_data(countries: List[str], folder_name: str) -> pd.DataFrame:
+    """
+    Function for loading the data from a number of csv files,
+    returning a pandas dataframe.
+
+    """
 
     dfs = []
 
     for country in countries:
-        
+
         file_name = f"{country}.csv"
         file_path = os.path.join('.', folder_name, file_name)
-        
+
         df = pd.read_csv(file_path)
-        df.columns = ['Date', 'GDP']
+        df.columns = pd.Index(['Date', 'GDP'])
         df['Country'] = country
-        
+
         dfs.append(df)
 
     combined_df = pd.concat(dfs)
 
     combined_df['Date'] = pd.to_datetime(combined_df['Date'])
 
+    combined_df['Country'] = pd.Index(combined_df['Country'])
+
     return combined_df
 
-def plot_data(df, countries):
+
+def plot_data(df: pd.DataFrame, countries: List[str]) -> None:
+    """
+    Function for creating a line plot that
+    compares the GDP of the different countries over time.
+
+    """
     filtered_df = df[df["Country"].isin(countries)]
     fig = px.line(
         filtered_df,

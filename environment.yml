@@ -1,0 +1,9 @@
+name: gdp_ex2
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - seaborn
+  - polars
+  - plotly
+  - pandas

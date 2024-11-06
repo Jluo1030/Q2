@@ -1,7 +1,10 @@
 # from source.load_data import load_data
 # from source.plot_data import plot_data
 # from source.clean_data import clean_data
-from func.util import *
+from func.util import load_data
+from func.util import clean_data
+from func.util import plot_data
+
 
 if __name__ == "__main__":
     # List of countries to analyze

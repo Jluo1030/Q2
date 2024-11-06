@@ -27,7 +27,7 @@ def load_data(countries: List[str], folder_name: str) -> pd.DataFrame:
     for country in countries:
 
         file_name = f"{country}.csv"
-        file_path = os.path.join('.', folder_name, file_name)
+        file_path = os.path.join('.\\ex2', folder_name, file_name)
 
         df = pd.read_csv(file_path)
         df.columns = pd.Index(['Date', 'GDP'])
